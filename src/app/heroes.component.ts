@@ -8,7 +8,6 @@ import { HeroService } from './hero.service';
 @Component({
   selector: 'my-heroes',
   templateUrl: './heroes.component.html',
-  styleUrls: [ './heroes.component.css' ],
   providers: [
     HeroService
   ]
@@ -19,6 +18,8 @@ export class HeroesComponent implements OnInit {
   selectedHero: Hero;
   tasks: Task[];
   selectedTask: Task;
+  finished = false;
+  model = {};
 
   constructor(
     private heroService: HeroService,
@@ -28,45 +29,6 @@ export class HeroesComponent implements OnInit {
   ngOnInit(): void {
     this.getTasks();
   }
-
-  /*
-  getHeroes(): void {
-    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
-  }
-
-  ngOnInit(): void {
-    this.getHeroes();
-  }
-
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-  }
-
-  gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedHero.id]);
-  }
-
-  add(name: string): void {
-    name = name.trim();
-    if (!name) {
-      return;
-    }
-
-    this.heroService.create(name)
-      .then(hero => {
-        this.heroes.push(hero);
-        this.selectedHero = null;
-      });
-   }
-
-  delete(hero: Hero): void {
-    this.heroService
-      .delete(hero.id)
-      .then(() => {
-        this.heroes = this.heroes.filter(h => h !== hero);
-        if (this.selectedHero === hero) { this.selectedHero = null; }
-      });
-  }*/
 
   getTasks(): void {
     this.heroService
@@ -82,6 +44,16 @@ export class HeroesComponent implements OnInit {
 
   gotoDetail(task: Task): void {
     this.router.navigate(['/detail', task.taskname]);
+  }
+
+  run(task: Task): void {
+    this.heroService
+      .run(task.taskname, task.runtime)
+      .then(task => {
+        this.finished = true;
+        this.model = task;
+        console.log(task);
+      });
   }
 
   delete(task: Task): void {

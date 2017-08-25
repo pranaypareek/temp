@@ -6,7 +6,7 @@
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name"
                required
-               [(ngModel)]="model.name" name="name"
+               [(ngModel)]="model.taskname" name="name"
                #name="ngModel">
         <div [hidden]="name.valid || name.pristine"
              class="alert alert-danger">
@@ -15,44 +15,26 @@
       </div>
 
       <div class="form-group">
-        <label for="alterEgo">Alter Ego</label>
+        <label for="alterEgo">Code</label>
         <textarea type="text" rows="20" class="form-control" id="alterEgo"
-               [(ngModel)]="model.alterEgo" name="alterEgo"></textarea>
+               [(ngModel)]="model.script" name="alterEgo"></textarea>
       </div>
 
       <div class="form-group">
-        <label for="power">Runtime</label>
-        <select class="form-control" id="power"
+        <label for="runtime">Runtime</label>
+        <select class="form-control" id="runtime"
                 required
-                [(ngModel)]="model.power" name="power"
-                #power="ngModel">
-          <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+                [(ngModel)]="model.runtime" name="runtime"
+                #runtime="ngModel">
+          <option *ngFor="let pow of runtimes" [value]="pow">{{pow}}</option>
         </select>
-        <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
-          Power is required
+        <div [hidden]="runtime.valid || runtime.pristine" class="alert alert-danger">
+          Runtime is required
         </div>
       </div>
 
       <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
-      <button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>
+      <button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">Cancel</button>
     </form>
-  </div>
-
-  <div [hidden]="!submitted">
-    <h2>You submitted the following:</h2>
-    <div class="row">
-      <div class="col-xs-3">Name</div>
-      <div class="col-xs-9  pull-left">{{ model.name }}</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3">Alter Ego</div>
-      <div class="col-xs-9 pull-left">{{ model.alterEgo }}</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3">Power</div>
-      <div class="col-xs-9 pull-left">{{ model.power }}</div>
-    </div>
-    <br>
-    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
   </div>
 </div>

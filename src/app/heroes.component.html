@@ -20,14 +20,46 @@
     Add
   </button>
 </div>-->
+<div class="container-fluid">
+  <h2>Tasks</h2>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let task of tasks">
+      &nbsp;&nbsp;&nbsp;
+      <a (click)="gotoDetail(task)">
+        <span>{{task.taskname}} ({{task.runtime}})</span>
+      </a>
+      <span>
+        <a>
+          <button class="btn btn-xs btn-success pull-left" (click)="run(task); $event.stopPropagation()">
+          <span class="glyphicon glyphicon-play"></span></button>
+        </a>
+        <a>
+          <button class="btn btn-xs btn-danger pull-right" (click)="delete(task); $event.stopPropagation()">x</button>
+        </a>
+      </span>
+    </li>
+  </ul>
+</div>
 
-<h2>Tasks</h2>
-<ul class="heroes">
-  <li *ngFor="let task of tasks"
-    [class.selected]="task === selectedTask" (click)="gotoDetail(task)">
-    <span class="badge">{{task.runtime}}</span>
-    <span>{{task.taskname}}</span>
-    <button class="delete"
-      (click)="delete(task); $event.stopPropagation()">x</button>
-  </li>
-</ul>
+<div class="container-fluid" [hidden]="!finished">
+    <h4>Output</h4>
+    <!--<h2>You submitted the following:</h2>
+    <div class="row">
+      <div class="col-xs-3">Name</div>
+      <div class="col-xs-9  pull-left">{{ model.name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Alter Ego</div>
+      <div class="col-xs-9 pull-left">{{ model.alterEgo }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Power</div>
+      <div class="col-xs-9 pull-left">{{ model.power }}</div>
+    </div>
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false">Edit</button>-->
+    <div>
+      <pre>{{model.result?.output}}<br/>Execution Time: {{model.result?.executionTime}}</pre>
+    </div>
+    <button class="btn btn-default" (click)="finished=false">Clear</button>
+</div>

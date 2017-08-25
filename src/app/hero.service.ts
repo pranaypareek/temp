@@ -79,6 +79,27 @@ export class HeroService {
       .catch(this.handleError);
   }
 
+
+  create(model: any): Promise<Hero> {
+    const url = `${this.apiUrl}/tasks`;
+    return this.http
+      .post(url, model,
+        { headers: this.headers })
+      .toPromise()
+      .then(res => res.json())
+      .catch(this.handleError);
+  }
+
+  run(taskname: string, runtime: string): Promise<{}> {
+    const url = `${this.apiUrl}/tasks/${taskname}/run`;
+    return this.http
+      .post(url, { runtime: runtime },
+        { headers: this.headers })
+      .toPromise()
+      .then(res => res.json())
+      .catch(this.handleError);
+  }
+
   delete(taskname: string, runtime: string): Promise<void> {
     const url = `${this.apiUrl}/tasks/${taskname}`;
     return this.http.delete(url, { body: { runtime: runtime }})
