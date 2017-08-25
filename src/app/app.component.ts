@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <div class="container-fluid">
       <nav>
         <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-        <a routerLink="/heroes" routerLinkActive="active">Tasks</a>
+        <a routerLink="/tasks" routerLinkActive="active">Tasks</a>
       </nav>
       <router-outlet></router-outlet>
     </div>

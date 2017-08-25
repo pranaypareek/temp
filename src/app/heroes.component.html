@@ -43,21 +43,6 @@
 
 <div class="container-fluid" [hidden]="!finished">
     <h4>Output</h4>
-    <!--<h2>You submitted the following:</h2>
-    <div class="row">
-      <div class="col-xs-3">Name</div>
-      <div class="col-xs-9  pull-left">{{ model.name }}</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3">Alter Ego</div>
-      <div class="col-xs-9 pull-left">{{ model.alterEgo }}</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3">Power</div>
-      <div class="col-xs-9 pull-left">{{ model.power }}</div>
-    </div>
-    <br>
-    <button class="btn btn-primary" (click)="submitted=false">Edit</button>-->
     <div>
       <pre>{{model.result?.output}}<br/>Execution Time: {{model.result?.executionTime}}</pre>
     </div>
